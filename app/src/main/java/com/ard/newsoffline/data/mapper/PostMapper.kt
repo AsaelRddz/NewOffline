@@ -5,19 +5,22 @@ import com.ard.newsoffline.data.remote.dto.PostDto
 import com.ard.newsoffline.domain.model.Post
 
 // ".toEntity()" indica que es una extension
+// api -> bd
 fun PostDto.toEntity() = PostEntity(
     id = id,
     title = title,
     body = body
 )
 
-fun PostEntity.toDomain() = Post(
+// api -> domain
+fun PostDto.toDomain() = Post(
     id = id,
     title = title,
     content = body
 )
 
-fun PostDto.toDomain() = Post(
+// bd -> domain
+fun PostEntity.toDomain() = Post(
     id = id,
     title = title,
     content = body

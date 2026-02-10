@@ -6,7 +6,6 @@ import retrofit2.http.GET
 // PostApi → define QUÉ endpoint llamas
 // endpoints
 interface PostApi {
-
     @GET("posts")
     suspend fun getPosts(): List<PostDto>
 }

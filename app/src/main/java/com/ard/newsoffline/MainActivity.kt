@@ -4,14 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ard.newsoffline.ui.post.PostScreen
+import com.ard.newsoffline.ui.post.PostViewModel
+import com.ard.newsoffline.ui.post.PostViewModelFactory
 import com.ard.newsoffline.ui.theme.NewsOfflineTheme
 
 /**
@@ -22,10 +19,19 @@ import com.ard.newsoffline.ui.theme.NewsOfflineTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val app = application as MyApp
+
         enableEdgeToEdge()
         setContent {
             NewsOfflineTheme {
-                PostScreen()
+
+                val viewModel: PostViewModel = viewModel(
+                    factory = PostViewModelFactory(LocalContext.current)
+                )
+
+                PostScreen(viewModel = viewModel)
+                //PostScreen(viewModel = PostScreenViewModel(app.repository))
             }
         }
     }

@@ -27,6 +27,8 @@ class PostRepositoryImpl(
             remotePosts.map { it.toDomain() }
         } catch (e : Exception) {
 
+            // when is not internet connected
+
             // bd -> domain
             dao.getPosts().map { it.toDomain() }
         }
